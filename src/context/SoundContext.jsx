@@ -72,16 +72,17 @@ export function SoundProvider({ children }) {
   }, []);
 
   // Enable audio on the first user interaction (browser autoplay policy).
+  // Capture phase so the very first pluck already has sound.
   useEffect(() => {
     if (audioEngine.enabled) return undefined;
     const handler = () => tryAutoEnable();
-    document.addEventListener('click', handler);
-    document.addEventListener('keydown', handler);
-    document.addEventListener('touchstart', handler);
+    document.addEventListener('pointerdown', handler, { capture: true });
+    document.addEventListener('keydown', handler, { capture: true });
+    document.addEventListener('touchstart', handler, { capture: true, passive: true });
     return () => {
-      document.removeEventListener('click', handler);
-      document.removeEventListener('keydown', handler);
-      document.removeEventListener('touchstart', handler);
+      document.removeEventListener('pointerdown', handler, { capture: true });
+      document.removeEventListener('keydown', handler, { capture: true });
+      document.removeEventListener('touchstart', handler, { capture: true });
     };
   }, [tryAutoEnable]);
 

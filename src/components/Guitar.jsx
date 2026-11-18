@@ -123,6 +123,44 @@ export function Guitar() {
     );
   };
 
+  const hoverString = useRef(-1);
+
+  const nearestString = (clientY) => {
+    const board = boardRef.current;
+    if (!board) return 0;
+    const rect = board.getBoundingClientRect();
+    const y = ((clientY - rect.top) / rect.height) * SVG_H;
+    let nearest = 0;
+    let best = Infinity;
+    STRING_Y.forEach((stringY, index) => {
+      const distance = Math.abs(stringY - y);
+      if (distance < best) {
+        best = distance;
+        nearest = index;
+      }
+    });
+    return nearest;
+  };
+
+  const onBoardPointerDown = (event) => {
+    const index = nearestString(event.clientY);
+    hoverString.current = index;
+    trigger(index, 0.85);
+  };
+
+  const onBoardPointerMove = (event) => {
+    if (event.pointerType === 'touch') return;
+    const index = nearestString(event.clientY);
+    if (index !== hoverString.current) {
+      hoverString.current = index;
+      trigger(index, 0.42);
+    }
+  };
+
+  const onBoardPointerLeave = () => {
+    hoverString.current = -1;
+  };
+
   return (
     <section
       className="section guitar"
@@ -155,7 +193,13 @@ export function Guitar() {
           </div>
         </div>
 
-        <div className="guitar-board" ref={boardRef}>
+        <div
+          className="guitar-board"
+          ref={boardRef}
+          onPointerDown={onBoardPointerDown}
+          onPointerMove={onBoardPointerMove}
+          onPointerLeave={onBoardPointerLeave}
+        >
           <div className="guitar-glow" aria-hidden="true" />
           <div className="soundhole" aria-hidden="true">
             <span />
@@ -212,10 +256,11 @@ export function Guitar() {
                 type="button"
                 className={`string-hit ${last?.index === index ? 'is-last' : ''}`}
                 style={{ top: `${(STRING_Y[index] / SVG_H) * 100}%` }}
-                onPointerEnter={(event) => {
-                  if (event.pointerType !== 'touch') trigger(index, 0.4);
+                onClick={(event) => {
+                  // Keyboard activation only; pointer events are handled by the
+                  // board so the entire surface is pluckable.
+                  if (event.detail === 0) trigger(index, 0.85);
                 }}
-                onClick={() => trigger(index, 0.85)}
                 aria-label={`Pluck ${string.label} string: ${string.note}${string.octave}, sargam ${string.sargam}, ${string.freq.toFixed(2)} hertz`}
               />
             ))}
