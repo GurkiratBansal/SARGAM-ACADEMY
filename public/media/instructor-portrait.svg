@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">Illustrated portrait of Meera Kaur</title>
+  <desc id="desc">A stylised magenta and gold portrait placeholder of a Hindustani vocalist, eyes closed, with a tanpura drone behind her.</desc>
+  <defs>
+    <radialGradient id="bg" cx="42%" cy="32%" r="78%">
+      <stop offset="0%" stop-color="#7c2752"/>
+      <stop offset="46%" stop-color="#3a0e27"/>
+      <stop offset="100%" stop-color="#10030b"/>
+    </radialGradient>
+    <linearGradient id="face" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3d0d20"/>
+      <stop offset="52%" stop-color="#250713"/>
+      <stop offset="100%" stop-color="#15030b"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1b030d"/>
+      <stop offset="100%" stop-color="#080104"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffe0a3"/>
+      <stop offset="48%" stop-color="#e9b44c"/>
+      <stop offset="100%" stop-color="#b77634"/>
+    </linearGradient>
+    <linearGradient id="cloth" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5c1735"/>
+      <stop offset="60%" stop-color="#2a0716"/>
+      <stop offset="100%" stop-color="#15030c"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.16"/>
+      </feComponentTransfer>
+    </filter>
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <g opacity=".5" fill="none" stroke="url(#gold)">
+    <circle cx="410" cy="392" r="304" stroke-width="1" opacity=".3"/>
+    <circle cx="410" cy="392" r="254" stroke-width=".7" opacity=".18"/>
+    <circle cx="410" cy="392" r="214" stroke-width=".5" opacity=".12"/>
+  </g>
+
+  <g opacity=".22" fill="none" stroke="url(#gold)">
+    <path d="M72 512c64-34 102-18 140 10s92 36 148-4 102-30 158 12 122 28 200-18" stroke-width="1.2"/>
+    <path d="M48 560c78-44 124-24 168 8s100 30 160-12 116-26 176 16 128 22 200-22" stroke-width=".8" opacity=".6"/>
+    <path d="M98 466c52-22 88-8 126 18s88 30 138-4 96-24 150 14 116 24 190-14" stroke-width=".7" opacity=".5"/>
+  </g>
+
+  <g filter="url(#softGlow)" opacity=".36">
+    <ellipse cx="540" cy="284" rx="172" ry="210" fill="#e9b44c"/>
+  </g>
+
+  <path
+    d="M124 800c24-164 112-256 286-256 178 0 274 96 300 256Z"
+    fill="url(#cloth)"
+  />
+  <path
+    d="M226 800c20-104 82-168 184-168 104 0 168 66 190 168Z"
+    fill="#17040d"
+  />
+  <path
+    d="M336 538c2 42-8 74-34 98 34 32 74 48 118 48 46 0 86-16 118-48-28-24-38-58-36-102Z"
+    fill="#260713"
+  />
+  <path
+    d="M340 580c8 30 30 48 80 48 50 0 74-18 82-50-12-8-48-16-82-16-34 0-68 8-80 18Z"
+    fill="#12030a"
+    opacity=".65"
+  />
+
+  <circle cx="292" cy="290" r="58" fill="url(#hair)"/>
+  <ellipse cx="414" cy="372" rx="128" ry="166" fill="url(#face)"/>
+  <path
+    d="M414 195c-80 0-138 58-142 142-2 46 10 78 24 102l30-4c-10-34-14-76-8-108 8-46 40-74 96-74s88 28 96 74c6 32 2 72-8 108l30 4c14-24 26-58 24-104-4-82-62-140-142-140Z"
+    fill="url(#hair)"
+  />
+  <path
+    d="M286 340c-4-56 18-102 54-126 34-22 76-24 112-10 46 18 76 64 80 122 4 52-10 112-44 148-26 28-62 44-102 44-42 0-76-16-102-46-32-38-44-92-42-132Z"
+    fill="none"
+    stroke="url(#gold)"
+    stroke-width="1"
+    opacity=".22"
+  />
+
+  <path
+    d="M300 350c18-9 44-9 62 0"
+    fill="none"
+    stroke="url(#gold)"
+    stroke-width="2.2"
+    stroke-linecap="round"
+    opacity=".8"
+  />
+  <path
+    d="M470 350c18-9 44-9 62 0"
+    fill="none"
+    stroke="url(#gold)"
+    stroke-width="2.2"
+    stroke-linecap="round"
+    opacity=".8"
+  />
+  <path
+    d="M302 386c17 10 43 10 60 0"
+    fill="none"
+    stroke="#f3d4a4"
+    stroke-width="2"
+    stroke-linecap="round"
+    opacity=".85"
+  />
+  <path
+    d="M470 386c17 10 43 10 60 0"
+    fill="none"
+    stroke="#f3d4a4"
+    stroke-width="2"
+    stroke-linecap="round"
+    opacity=".85"
+  />
+
+  <path
+    d="M410 390c-3 24-10 40-6 50 3 8 14 10 21 4"
+    fill="none"
+    stroke="#d9a25c"
+    stroke-width="2"
+    stroke-linecap="round"
+    opacity=".65"
+  />
+  <path
+    d="M380 470c10-7 22-9 32-3 10-6 22-4 32 3-10 14-24 20-32 20-8 0-22-6-32-20Z"
+    fill="#c85b72"
+    opacity=".9"
+  />
+  <path
+    d="M381 471c18 6 40 6 58 0"
+    fill="none"
+    stroke="#ffd9a0"
+    stroke-width="1"
+    opacity=".5"
+  />
+  <circle cx="410" cy="348" r="4.2" fill="url(#gold)"/>
+
+  <g stroke="url(#gold)" fill="none">
+    <path d="M296 430c-12 12-12 33 0 45 12-12 12-33 0-45Z" fill="#2a0715" stroke-width="1.4"/>
+    <path d="M524 430c12 12 12 33 0 45-12-12-12-33 0-45Z" fill="#2a0715" stroke-width="1.4"/>
+    <circle cx="296" cy="452" r="3" fill="#e9b44c" stroke="none"/>
+    <circle cx="524" cy="452" r="3" fill="#e9b44c" stroke="none"/>
+    <path d="M330 536c48 24 112 24 160 0" stroke-width="1.6" opacity=".55"/>
+    <path d="M348 552c36 16 88 16 124 0" stroke-width="1" opacity=".32"/>
+  </g>
+
+  <g opacity=".7">
+    <path
+      d="M272 650c22-24 54-34 86-26M528 650c-22-24-54-34-86-26"
+      fill="none"
+      stroke="url(#gold)"
+      stroke-width="1.2"
+      opacity=".4"
+    />
+    <path d="M238 700c46-20 100-22 144-6M562 700c-40-18-96-20-144-6" fill="none" stroke="url(#gold)" stroke-width=".8" opacity=".25"/>
+  </g>
+
+  <g opacity=".2" transform="translate(640 540)">
+    <path d="M0 0h96M0 20h96M0 40h96M0 60h96" stroke="#f3d4a4" stroke-width="2"/>
+    <path d="M12 0v60M36 0v60M60 0v60M84 0v60" stroke="#f3d4a4" stroke-width="1"/>
+  </g>
+
+  <rect width="800" height="800" filter="url(#grain)" opacity=".3"/>
+  <rect x="18" y="18" width="764" height="764" fill="none" stroke="#e9b44c" stroke-width=".8" opacity=".24"/>
+</svg>
