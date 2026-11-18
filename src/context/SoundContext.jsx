@@ -12,13 +12,31 @@ import { audioEngine } from '../lib/audio';
 const SoundContext = createContext(null);
 
 export function SoundProvider({ children }) {
-  const [enabled, setEnabled] = useState(false);
+  // Sound is on by default (UI). The AudioContext is only actually started
+  // after the first user interaction, per browser autoplay policy.
+  const [enabled, setEnabled] = useState(true);
   const [notice, setNotice] = useState('');
   const noticeTimer = useRef(0);
+  const autoEnabledRef = useRef(false);
 
   const clearNotice = useCallback(() => setNotice(''), []);
 
+  const tryAutoEnable = useCallback(() => {
+    if (autoEnabledRef.current || audioEngine.enabled) return;
+    autoEnabledRef.current = true;
+    const ok = audioEngine.setEnabled(true);
+    setEnabled(ok);
+    if (ok) {
+      setNotice('Sound on. Every tone is synthesised live in your browser.');
+      window.clearTimeout(noticeTimer.current);
+      noticeTimer.current = window.setTimeout(() => setNotice(''), 5200);
+    } else {
+      setEnabled(false);
+    }
+  }, []);
+
   const toggle = useCallback(() => {
+    autoEnabledRef.current = true; // prevent auto-enable race
     const next = !audioEngine.enabled;
     const ok = audioEngine.setEnabled(next);
     if (!ok && next) {
@@ -38,7 +56,11 @@ export function SoundProvider({ children }) {
   }, []);
 
   const enable = useCallback(() => {
-    if (audioEngine.enabled) return true;
+    autoEnabledRef.current = true;
+    if (audioEngine.enabled) {
+      setEnabled(true);
+      return true;
+    }
     const ok = audioEngine.setEnabled(true);
     if (ok) {
       setEnabled(true);
@@ -48,6 +70,20 @@ export function SoundProvider({ children }) {
     }
     return ok;
   }, []);
+
+  // Enable audio on the first user interaction (browser autoplay policy).
+  useEffect(() => {
+    if (audioEngine.enabled) return undefined;
+    const handler = () => tryAutoEnable();
+    document.addEventListener('click', handler);
+    document.addEventListener('keydown', handler);
+    document.addEventListener('touchstart', handler);
+    return () => {
+      document.removeEventListener('click', handler);
+      document.removeEventListener('keydown', handler);
+      document.removeEventListener('touchstart', handler);
+    };
+  }, [tryAutoEnable]);
 
   useEffect(() => {
     return () => {
