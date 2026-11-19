@@ -6,7 +6,7 @@ import { usePreferences } from '../context/PreferencesContext';
 /**
  * Lenis drives the page; GSAP's ticker drives Lenis so ScrollTrigger,
  * quickTo and Lenis all share one clock. Reduced motion gets native
- * scrolling — no smoothing, no wheel interception.
+ * scrolling â€” no smoothing, no wheel interception.
  */
 export function useSmoothScroll() {
   const { reducedMotion, touch, small } = usePreferences();
@@ -27,7 +27,7 @@ export function useSmoothScroll() {
       anchors: false,
     });
 
-    window.__sargamLenis = lenis;
+    window.__amarLenis = lenis;
     const onScroll = () => ScrollTrigger.update();
     lenis.on('scroll', onScroll);
 
@@ -48,7 +48,7 @@ export function useSmoothScroll() {
       lenis.off('scroll', onScroll);
       gsap.ticker.remove(tick);
       lenis.destroy();
-      if (window.__sargamLenis === lenis) window.__sargamLenis = null;
+      if (window.__amarLenis === lenis) window.__amarLenis = null;
       document.documentElement.classList.remove('lenis', 'lenis-smooth', 'lenis-scrolling');
     };
   }, [reducedMotion, touch, small]);

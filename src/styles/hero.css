@@ -676,3 +676,66 @@
   line-height: 1.6;
   text-transform: uppercase;
 }
+
+/* ---------- Admissions ------------------------------------------------ */
+
+.admission-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: clamp(26px, 4vw, 42px) 0 clamp(18px, 2.6vw, 26px);
+}
+
+.admission-card {
+  display: grid;
+  align-content: start;
+  gap: 9px;
+  padding: 22px 20px 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(233, 180, 76, 0.055), transparent 70%),
+    rgba(10, 8, 12, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 24px 60px rgba(0, 0, 0, 0.18);
+}
+
+.admission-label {
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.admission-value {
+  color: var(--paper);
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 2.6vw, 2.35rem);
+  font-weight: 340;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.admission-copy {
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .admission-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 540px) {
+  .admission-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admission-card {
+    padding: 18px 18px 17px;
+  }
+}

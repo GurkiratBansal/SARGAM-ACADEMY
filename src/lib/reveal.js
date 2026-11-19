@@ -6,7 +6,7 @@ export function signalReveal() {
   listeners.forEach((listener) => listener());
   listeners.clear();
   if (typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('sargam:revealed'));
+    window.dispatchEvent(new CustomEvent('amar:revealed'));
   }
 }
 

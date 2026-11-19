@@ -49,7 +49,7 @@ export function Hero() {
         <div className="hero-copy">
           <p className="eyebrow hero-eyebrow">
             <span className="live-dot" aria-hidden="true" />
-            Six-week live cohort · 18 seats
+            Ludhiana · Online · Since 2013
           </p>
 
           <PluckText
@@ -63,19 +63,20 @@ export function Hero() {
           />
 
           <p className="hero-lede">
-            Sur, taal and stagecraft for beginners who were told they were “tone deaf” — and for
-            singers who still freeze at the microphone. Two live sessions a week, six weeks, one
-            small room.
+            Structured vocal and instrumental training for beginners through advanced learners.
+            Indian classical, Punjabi folk, Gurbani, Bollywood, ghazal and qawwali — taught one note
+            at a time.
           </p>
 
           <div className="hero-actions">
             <Magnetic
               className="btn btn-gold btn-large"
-              href="#join"
-              onClick={(event) => go(event, 'join')}
+              href={SITE.registrationUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               data-cursor="strong"
             >
-              Take a seat
+              Book a free demo
               <span className="arrow" aria-hidden="true">
                 ↗
               </span>
@@ -87,7 +88,7 @@ export function Hero() {
           </div>
 
           <p className="hero-meta">
-            {SITE.cohortShort} · ₹8,400 · {SITE.location} · two scholarship seats
+            Free demo · Group classes from ₹3,000/month · {SITE.location}
           </p>
 
           <div className={`voice-panel ${isLive ? 'is-live' : ''}`}>
@@ -150,18 +151,18 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="wrap hero-stats" aria-label="Cohort facts">
+      <div className="wrap hero-stats" aria-label="Academy facts">
         <div>
-          <span className="stat-value">18</span>
-          <span className="stat-label">seats, no more</span>
+          <span className="stat-value">15+</span>
+          <span className="stat-label">years teaching</span>
         </div>
         <div>
           <span className="stat-value">6</span>
-          <span className="stat-label">weeks, live</span>
+          <span className="stat-label">course streams</span>
         </div>
         <div>
-          <span className="stat-value">16</span>
-          <span className="stat-label">beats you will own</span>
+          <span className="stat-value">2</span>
+          <span className="stat-label">classes a week</span>
         </div>
         <div>
           <span className="stat-value">0</span>

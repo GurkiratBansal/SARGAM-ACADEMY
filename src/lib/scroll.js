@@ -1,7 +1,7 @@
 export const NAV_OFFSET = -76;
 
 export function getLenis() {
-  return typeof window !== 'undefined' ? window.__sargamLenis : null;
+  return typeof window !== 'undefined' ? window.__amarLenis : null;
 }
 
 export function sectionTop(el) {

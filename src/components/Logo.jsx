@@ -13,7 +13,7 @@ export function Logo() {
         </svg>
       </span>
       <span className="logo-word">
-        <span className="logo-name">Sargam</span>
+        <span className="logo-name">Amar Music</span>
         <span className="logo-sub">academy</span>
       </span>
     </span>

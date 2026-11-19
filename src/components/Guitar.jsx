@@ -92,9 +92,11 @@ export function Guitar() {
   }, []);
 
   const trigger = useCallback(
-    (index, strength = 0.6) => {
+    (index, strength = 0.6, force = false) => {
       const now = performance.now();
-      if (now - lastTriggered.current[index] < 95) return;
+      // Hover sweeps are throttled, but a deliberate click always plucks —
+      // otherwise the pointermove that precedes a click swallows it.
+      if (!force && now - lastTriggered.current[index] < 95) return;
       lastTriggered.current[index] = now;
       pluck(index);
       if (!reducedMotion) {
@@ -116,7 +118,7 @@ export function Guitar() {
     setStrumming(true);
     strumTimers.current.forEach((timer) => window.clearTimeout(timer));
     strumTimers.current = GUITAR_STRINGS.map((_, index) =>
-      window.setTimeout(() => trigger(index, 0.75), index * 105),
+      window.setTimeout(() => trigger(index, 0.75, true), index * 105),
     );
     strumTimers.current.push(
       window.setTimeout(() => setStrumming(false), GUITAR_STRINGS.length * 105 + 260),
@@ -145,7 +147,7 @@ export function Guitar() {
   const onBoardPointerDown = (event) => {
     const index = nearestString(event.clientY);
     hoverString.current = index;
-    trigger(index, 0.85);
+    trigger(index, 0.85, true);
   };
 
   const onBoardPointerMove = (event) => {
@@ -173,7 +175,7 @@ export function Guitar() {
       <div className="wrap">
         <div className="section-head guitar-head">
           <div>
-            <p className="eyebrow">Learn with guitar · Instrument no. 01</p>
+            <p className="eyebrow">Guitar · Instrument no. 01</p>
             <PluckText
               as="h2"
               id="guitar-title"
@@ -188,6 +190,10 @@ export function Guitar() {
             <p>
               Pluck a string. The vibration you see is a damped standing wave; the note you hear is
               generated live by a Karplus–Strong string model. There is no audio file on this page.
+            </p>
+            <p>
+              Guitar is one of six course streams at the academy — from first chords to lead work and
+              accompaniment.
             </p>
             <p className="mono-note">E2 · A2 · D3 · G3 · B3 · E4</p>
           </div>
@@ -259,7 +265,7 @@ export function Guitar() {
                 onClick={(event) => {
                   // Keyboard activation only; pointer events are handled by the
                   // board so the entire surface is pluckable.
-                  if (event.detail === 0) trigger(index, 0.85);
+                  if (event.detail === 0) trigger(index, 0.85, true);
                 }}
                 aria-label={`Pluck ${string.label} string: ${string.note}${string.octave}, sargam ${string.sargam}, ${string.freq.toFixed(2)} hertz`}
               />
@@ -295,7 +301,7 @@ export function Guitar() {
             </span>
             <span className="readout-tech">Karplus–Strong · 0 samples</span>
           </div>
-          <SoundNudge label="Sound is off, so the strings are silent." />
+          <SoundNudge />
         </div>
 
         <p className="guitar-hint">

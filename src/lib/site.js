@@ -1,76 +1,93 @@
 /**
  * All editable copy and business details live here.
- * Replace the placeholder instructor, date, email and form endpoint before launch.
+ *
+ * Amar Music Academy — working draft built from the academy profile
+ * (updated 18 November 2026). Items marked "confirm" in that document are
+ * kept deliberately general here; see README.md before publishing.
  */
 
 export const SITE = {
-  brand: 'Sargam',
-  brandFull: 'Sargam Academy',
-  email: 'hello@sargam.academy',
-  location: 'Chandigarh · Online',
-  // Used for the countdown. ISO string with the IST offset.
-  cohortDate: '2026-12-06T18:30:00+05:30',
-  cohortLabel: '6 December 2026, 6:30 pm IST',
-  cohortShort: '6 Dec · 6:30 pm IST',
-  seats: 18,
-  weeks: 6,
-  // Optional POST endpoint (Formspree, Basin, your own API). Leave empty for local demo mode.
-  formEndpoint: '',
+  brand: 'Amar Music',
+  brandShort: 'Amar',
+  brandFull: 'Amar Music Academy',
+  brandLine: 'We Create Performers',
+  email: 'amarmusicacademyludhiana@gmail.com',
+  emailAlt: 'dr.amarsuri@gmail.com',
+  phone: '+91 96534 15700',
+  phoneHref: '+919653415700',
+  phoneAlt: '+91 70090 24875',
+  phoneAltHref: '+917009024875',
+  location: 'Ishar Nagar, Ludhiana · Online',
+  locality: 'Ludhiana',
+  region: 'Punjab',
+  address: 'Ishar Nagar, near the rear side of GNE College, Gill Road, Ludhiana, Punjab, India',
+  founded: 2013,
+  // The academy's live registration form (Google Forms).
+  registrationUrl:
+    'https://docs.google.com/forms/d/e/1FAIpQLSeFXBbDfuuRB3bx5bFq8AMNwUFhYRB7nnRMZrI0iYbV-wLAXQ/viewform',
+  demo: {
+    free: true,
+    duration: '15–30 minutes',
+  },
+  fees: {
+    group: [3000, 4000, 5000],
+    classesPerWeek: 2,
+    classesPerMonth: 8,
+  },
   // Optional intro reel. Drop a file in /public/media and point here to swap the placeholder.
   reelSrc: '',
 };
 
 export const NAV_LINKS = [
-  { id: 'outcomes', label: 'The six' },
+  { id: 'outcomes', label: 'Courses' },
   { id: 'guitar', label: 'Guitar' },
   { id: 'sur-taal', label: 'Sur & Taal' },
   { id: 'stage', label: 'Stage' },
-  { id: 'instructor', label: 'Instructor' },
+  { id: 'instructor', label: 'Founder' },
   { id: 'faq', label: 'FAQ' },
 ];
 
 export const HERO_LINES = [
-  { text: 'Find the note', italic: false },
-  { text: 'only you', italic: true },
-  { text: 'can sing.', italic: false },
+  { text: 'We create', italic: false },
+  { text: 'performers.', italic: true },
 ];
 
 export const OUTCOMES = [
   {
     note: 'Sa',
-    title: 'Sing in tune',
-    body: 'Train your ear to hear the difference between almost and exactly.',
-    detail: 'Weekly ear drills, drone practice, and a personal pitch map.',
+    title: 'Vocal / Singing',
+    body: 'Pitch, breath, voice culture and simple songs.',
+    detail: 'Beginner to advanced: alankars, raga work, taan, expression and stage repertoire.',
   },
   {
     note: 'Re',
-    title: 'Keep taal',
-    body: 'Feel a sixteen-beat cycle without counting under your breath.',
-    detail: 'Teental, keherwa and jhaptal by clapping, walking and singing.',
+    title: 'Guitar',
+    body: 'Chords, rhythm, posture and first songs.',
+    detail: 'Chord transitions, scales, lead work and accompaniment, from beginner to advanced.',
   },
   {
     note: 'Ga',
-    title: 'Play harmonium',
+    title: 'Harmonium & Keyboard',
     body: 'Find your note, accompany yourself, never chase a key again.',
-    detail: 'Both hands, one drone, and the two chords that hold most songs.',
+    detail: 'Fingering, scales, raga and song accompaniment, improvisation and performance.',
   },
   {
     note: 'Ma',
-    title: 'Read sur',
-    body: 'Turn sargam into a language you can write, transpose and teach.',
-    detail: 'Notation, scales, and the grammar behind a simple bandish.',
+    title: 'Tabla',
+    body: 'Bols, hand technique, theka and timing.',
+    detail: 'Common talas, kayda, relas, laya control and advanced performance compositions.',
   },
   {
     note: 'Pa',
-    title: 'Hold the stage',
-    body: 'Breath, presence, and the first thirty seconds of performance.',
-    detail: 'Mic technique, stage mapping, and a real audience on week six.',
+    title: 'Gurbani / Shabad Kirtan',
+    body: 'Sur, pronunciation and simple shabad practice.',
+    detail: 'Raag-oriented learning, taal, accompaniment and expanded shabad repertoire.',
   },
   {
     note: 'Dha',
-    title: 'Find your voice',
-    body: 'Leave with two bandish, a ghazal, and one song that is entirely yours.',
-    detail: 'A recorded (only with consent) final baithak and a practice plan.',
+    title: 'Folk · Film · Ghazal · Qawwali',
+    body: 'Punjabi folk, Bollywood, ghazal and qawwali.',
+    detail: 'Style, expression, ornamentation, interpretation and stage presentation.',
   },
 ];
 
@@ -90,42 +107,67 @@ export const STAGE_TIPS = [
 ];
 
 export const INSTRUCTOR = {
-  name: 'Meera Kaur',
-  role: 'Hindustani vocalist · harmonium · educator',
-  quote:
-    'I still get nervous before a baithak. The work is not to remove the fear — it is to give it a rhythm.',
-  bio: 'Fourteen years of teaching in Chandigarh, a khayal gharana grounding, and a stubborn belief that nobody is tone deaf. Meera has taken over 600 beginners from "I can\'t sing" to their first stage.',
+  name: 'Amarjeet Singh Suri',
+  firstName: 'Amarjeet',
+  role: 'Founder · Music educator',
+  roles: ['Music educator', 'Vocalist', 'Composer', 'Voice-over & dubbing artist', 'Actor'],
+  bio: 'Amarjeet Singh Suri is a music educator and performing artist with more than fifteen years of teaching experience. He holds a Master’s degree in Music (Vocal / Classical) from SGGS Khalsa College, Mahilpur, affiliated with Panjab University, and a Bachelor’s degree in Music (Instrumental & Vocal) from USOL, Panjab University. His teaching spans Indian classical and light music, Punjabi folk, Gurbani and Shabad Kirtan, Bollywood, ghazal and qawwali. His professional work includes announcing for AIR FM Gold, Ludhiana, Punjabi news reading for Doordarshan Kendra, Jalandhar, voice-over and dubbing for Punjabi campaigns and audiobooks, studio production, and screen work in Sardar Udham, Fateh and The Diplomat, with television appearances on Colors and Zee Punjabi.',
   stats: [
-    { value: '14', label: 'years teaching' },
-    { value: '600+', label: 'beginners taught' },
-    { value: '40', label: 'student baithaks' },
+    { value: '15+', label: 'years teaching' },
+    { value: '2013', label: 'academy founded' },
+    { value: '6', label: 'course streams' },
+  ],
+  gallery: [
+    {
+      src: '/media/founder-riyaz.jpg',
+      label: 'Riyaz',
+      alt: 'Amarjeet Singh Suri playing a stringed instrument during practice.',
+    },
+    {
+      src: '/media/founder-studio.jpg',
+      label: 'Studio',
+      alt: 'Amarjeet Singh Suri at the studio microphone.',
+    },
+    {
+      src: '/media/founder-stage.jpg',
+      label: 'Stage',
+      alt: 'Amarjeet Singh Suri performing on stage with a microphone.',
+    },
   ],
 };
 
 export const FAQS = [
   {
-    q: 'I have never sung before. Is this too advanced?',
-    a: 'No. The cohort is built for absolute beginners and for people returning after years away. Week one starts with one note, a drone and a breath. If you can speak, you can start.',
+    q: 'I have never trained before. Can I start?',
+    a: 'Yes. Courses are built for beginners and for people returning after years away. Beginner streams start with posture, breath, pitch and a simple song — no prior theory is assumed.',
   },
   {
-    q: 'Do I need to read music?',
-    a: 'Not at all. You will learn to read basic sargam notation by the end, but every exercise is taught by ear first. No prior theory is assumed.',
+    q: 'What can I learn at the academy?',
+    a: 'Vocal and instrumental courses include singing, guitar, harmonium and keyboard, tabla, Gurbani and Shabad Kirtan, and Punjabi folk, Bollywood, ghazal and qawwali. Current availability of each course is confirmed when you enquire.',
+  },
+  {
+    q: 'Online or in Ludhiana?',
+    a: 'Both, according to current availability. The academy is in Ishar Nagar, near the rear side of GNE College, Gill Road, Ludhiana, and online classes are available for students elsewhere.',
+  },
+  {
+    q: 'Is the demo class really free?',
+    a: 'Yes. The demo class is free and runs 15–30 minutes, including a short introduction and assessment. Book it through the registration form; the academy confirms the date and time according to availability.',
+  },
+  {
+    q: 'What do classes cost?',
+    a: 'Indicative monthly group fees are ₹3,000 for beginner, ₹4,000 for intermediate and ₹5,000 for advanced, for two classes a week (about eight a month). Individual class fees are quoted on enquiry. Fees and batch details are confirmed before you enrol.',
   },
   {
     q: 'Is my voice recorded during the mic demo?',
     a: 'No. The demo uses your microphone only inside your browser to draw the visual. Audio is never recorded, stored, or uploaded. There is no server involved. You can stop it at any time and the mic track is released.',
   },
   {
-    q: 'Online or in Chandigarh?',
-    a: 'Both. Live sessions run twice a week in Chandigarh and are streamed for the online cohort. Recordings stay available for four weeks, so a missed session is not a missed week.',
+    q: 'Who teaches?',
+    a: 'The academy is founder-led. Amarjeet Singh Suri is a music educator and performing artist with more than fifteen years of teaching experience, a Master’s degree in Music (Vocal / Classical) and a Bachelor’s degree in Music (Instrumental & Vocal).',
   },
   {
-    q: 'I freeze when people watch me. Will this help?',
-    a: 'That is the section we care most about. Weeks three to six include low-stakes performance practice, a spotlight session, and a final baithak in front of a small invited audience. You can opt out of the final stage and still complete the cohort.',
-  },
-  {
-    q: 'What does it cost, and what is the refund policy?',
-    a: 'The winter cohort is ₹8,400 for six weeks, including the workbook, practice tracks and the final baithak. Full refund until seven days before the first session; after that, one session can be transferred to a future cohort. Ask us about the two scholarship seats.',
+    q: 'How do I register?',
+    a: 'Use the registration form linked on this page. It opens in a new tab, and the academy replies with a demo slot, the right course stream and the current fee sheet.',
   },
 ];
 

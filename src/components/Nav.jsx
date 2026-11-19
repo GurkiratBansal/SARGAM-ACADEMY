@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Logo } from './Logo';
 import { SoundToggle } from './SoundToggle';
 import { Magnetic } from './Magnetic';
-import { NAV_LINKS } from '../lib/site';
+import { NAV_LINKS, SITE } from '../lib/site';
 import { useSectionNavigate } from '../hooks/useSectionNavigate';
 
 export function Nav() {
@@ -72,7 +72,7 @@ export function Nav() {
           className="brand-link"
           href="#top"
           onClick={(event) => go(event, 'top')}
-          aria-label="Sargam Academy, back to top"
+          aria-label="Amar Music Academy, back to top"
         >
           <Logo />
         </a>
@@ -95,8 +95,9 @@ export function Nav() {
           <SoundToggle />
           <Magnetic
             className="btn btn-small btn-gold nav-register"
-            href="#join"
-            onClick={(event) => go(event, 'join')}
+            href={SITE.registrationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             data-cursor="strong"
           >
             Register
@@ -127,12 +128,17 @@ export function Nav() {
               <span aria-hidden="true">↗</span>
             </a>
           ))}
-          <a href="#join" onClick={(event) => go(event, 'join')}>
-            <span>Register</span>
+          <a
+            href={SITE.registrationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+          >
+            <span>Book a demo</span>
             <span aria-hidden="true">↗</span>
           </a>
         </nav>
-        <p className="mobile-menu-note">Chandigarh · Online · Winter cohort 2026</p>
+        <p className="mobile-menu-note">Ludhiana · Online · Free demo</p>
       </div>
     </header>
   );

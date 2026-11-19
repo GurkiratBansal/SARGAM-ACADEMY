@@ -1,10 +1,10 @@
 import { Suspense, lazy, useEffect } from 'react';
-import { SargamLoader } from './components/SargamLoader';
+import { SiteLoader } from './components/SiteLoader';
 import { StageLights } from './components/StageLights';
 import { CustomCursor } from './components/CustomCursor';
 import { Nav } from './components/Nav';
 import { Hero } from './components/Hero';
-import { Countdown } from './components/Countdown';
+import { Admissions } from './components/Admissions';
 const Outcomes = lazy(() => import('./components/Outcomes').then((m) => ({ default: m.Outcomes })));
 const Guitar = lazy(() => import('./components/Guitar').then((m) => ({ default: m.Guitar })));
 const SurTaal = lazy(() => import('./components/SurTaal').then((m) => ({ default: m.SurTaal })));
@@ -63,13 +63,13 @@ export function App() {
       window.cancelAnimationFrame(frame);
       frame = window.requestAnimationFrame(() => ScrollTrigger.refresh());
     };
-    window.addEventListener('sargam:revealed', refresh);
+    window.addEventListener('amar:revealed', refresh);
     window.addEventListener('load', refresh, { once: true });
     document.fonts?.ready.then(refresh).catch(() => {});
 
     return () => {
       window.cancelAnimationFrame(frame);
-      window.removeEventListener('sargam:revealed', refresh);
+      window.removeEventListener('amar:revealed', refresh);
       window.removeEventListener('load', refresh);
     };
   }, []);
@@ -85,7 +85,7 @@ export function App() {
 
   return (
     <>
-      <SargamLoader />
+      <SiteLoader />
       <div id="site-shell">
         <a className="skip-link" href="#main" onClick={skipToContent}>
           Skip to content
@@ -97,7 +97,7 @@ export function App() {
 
         <main id="main" tabIndex={-1}>
           <Hero />
-          <Countdown />
+          <Admissions />
           <Suspense fallback={null}>
             <Outcomes />
             <Guitar />

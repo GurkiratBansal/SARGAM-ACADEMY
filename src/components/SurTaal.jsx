@@ -144,7 +144,7 @@ export function SurTaal() {
     >
       <div className="wrap taal-grid">
         <div className="taal-copy">
-          <p className="eyebrow">Understand sur &amp; taal · Instrument no. 02</p>
+          <p className="eyebrow">Sur &amp; taal · The foundation</p>
           <PluckText
             as="h2"
             id="taal-title"
@@ -204,7 +204,7 @@ export function SurTaal() {
             </div>
           </div>
 
-          <SoundNudge label="Sound is off, so the tabla is silent." />
+          <SoundNudge />
           {reducedMotion && (
             <p className="mono-note reduced-note">
               Reduced motion is on. The ring is still until you press play.
@@ -283,7 +283,7 @@ export function SurTaal() {
         </div>
       </div>
       <p className="taal-foot sr-only">
-        The next cohort begins {SITE.cohortLabel}. {SITE.seats} seats.
+        Classes run twice a week, online and in Ludhiana. Ask about a demo at {SITE.email}.
       </p>
     </section>
   );

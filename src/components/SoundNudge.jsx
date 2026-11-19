@@ -1,8 +1,14 @@
 import { useSound } from '../context/SoundContext';
 
-export function SoundNudge({ label = 'Sound is off. Turn it on to hear this section.', className = '' }) {
-  const { enabled, enable } = useSound();
-  if (enabled) return null;
+export function SoundNudge({ label = '', className = '' }) {
+  const { enabled, started, enable } = useSound();
+
+  // `enabled` is the visitor's preference; `started` is whether the browser
+  // has actually created the AudioContext yet (it needs one user gesture).
+  if (enabled && started) return null;
+
+  const text =
+    label || (enabled ? 'Sound is ready. One tap starts it.' : 'Sound is off. Turn it on to hear this section.');
 
   return (
     <button type="button" className={`sound-nudge ${className}`.trim()} onClick={enable}>
@@ -15,8 +21,8 @@ export function SoundNudge({ label = 'Sound is off. Turn it on to hear this sect
         />
         <path d="m16 9 5 6M21 9l-5 6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
       </svg>
-      <span>{label}</span>
-      <strong>Enable sound</strong>
+      <span>{text}</span>
+      <strong>{enabled ? 'Start sound' : 'Enable sound'}</strong>
     </button>
   );
 }

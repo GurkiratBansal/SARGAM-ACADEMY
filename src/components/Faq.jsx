@@ -33,15 +33,15 @@ export function Faq() {
           <div className="faq-aside">
             <span className="mono-label">The short version</span>
             <p>
-              No audition. No instrument needed on day one. No recording of your voice. Six weeks,
-              {` ${SITE.seats} `}people, one small stage at the end.
+              No audition. No instrument needed on day one. No recording of your voice. Two classes
+              a week, beginner to advanced.
             </p>
           </div>
         </div>
 
         <div className="faq-list">
           {FAQS.map((faq, index) => (
-            <details key={faq.q} name="sargam-faq" open={index === 0}>
+            <details key={faq.q} name="amar-faq" open={index === 0}>
               <summary>
                 <span className="faq-number">{String(index + 1).padStart(2, '0')}</span>
                 <span className="faq-question">{faq.q}</span>
@@ -57,11 +57,16 @@ export function Faq() {
           ))}
           <div className="faq-end">
             <p>
-              Still deciding? Come to the free listening session on the first Sunday of the month.
-              No slides, no sales pitch — just a room and a note.
+              Still deciding? The demo is free — 15–30 minutes to meet the academy, try a first note
+              and talk through the right course. Registration takes a couple of minutes.
             </p>
-            <a href="#join" className="btn btn-gold btn-small">
-              Reserve a seat
+            <a
+              href={SITE.registrationUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-gold btn-small"
+            >
+              Book a free demo
             </a>
           </div>
         </div>

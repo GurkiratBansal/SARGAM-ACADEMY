@@ -1,16 +1,19 @@
 import { useSound } from '../context/SoundContext';
 
 export function SoundToggle({ className = '' }) {
-  const { enabled, toggle } = useSound();
+  const { enabled, started, toggle } = useSound();
+  const playing = enabled && started;
+  const label = !enabled ? 'Sound off' : started ? 'Sound on' : 'Sound ready';
+  const action = !enabled ? 'Turn sound on' : started ? 'Turn sound off' : 'Start sound';
 
   return (
     <button
       type="button"
-      className={`sound-toggle ${enabled ? 'is-on' : ''} ${className}`.trim()}
+      className={`sound-toggle ${playing ? 'is-on' : ''} ${className}`.trim()}
       onClick={toggle}
       aria-pressed={enabled}
-      aria-label={enabled ? 'Turn sound off' : 'Turn sound on'}
-      title={enabled ? 'Sound on — every tone is synthesised' : 'Sound off'}
+      aria-label={action}
+      title={playing ? 'Sound on — every tone is synthesised' : enabled ? 'Sound ready — tap to start' : 'Sound off'}
     >
       <span className="sound-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none">
@@ -30,7 +33,7 @@ export function SoundToggle({ className = '' }) {
           )}
         </svg>
       </span>
-      <span className="sound-label">{enabled ? 'Sound on' : 'Sound off'}</span>
+      <span className="sound-label">{label}</span>
     </button>
   );
 }

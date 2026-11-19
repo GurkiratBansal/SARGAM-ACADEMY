@@ -43,7 +43,7 @@ function detectDevice() {
 function readMotionPreference() {
   if (typeof window === 'undefined') return false;
   try {
-    if (localStorage.getItem('sargam-motion') === 'reduced') return true;
+    if (localStorage.getItem('amar-motion') === 'reduced') return true;
   } catch {
     /* storage can be blocked */
   }
@@ -93,7 +93,7 @@ export function PreferencesProvider({ children }) {
     setUserReduced((previous) => {
       const next = !previous;
       try {
-        localStorage.setItem('sargam-motion', next ? 'reduced' : 'full');
+        localStorage.setItem('amar-motion', next ? 'reduced' : 'full');
       } catch {
         /* ignore */
       }

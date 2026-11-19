@@ -15,6 +15,7 @@ export function SoundProvider({ children }) {
   // Sound is on by default (UI). The AudioContext is only actually started
   // after the first user interaction, per browser autoplay policy.
   const [enabled, setEnabled] = useState(true);
+  const [started, setStarted] = useState(false);
   const [notice, setNotice] = useState('');
   const noticeTimer = useRef(0);
   const autoEnabledRef = useRef(false);
@@ -27,6 +28,7 @@ export function SoundProvider({ children }) {
     const ok = audioEngine.setEnabled(true);
     setEnabled(ok);
     if (ok) {
+      setStarted(true);
       setNotice('Sound on. Every tone is synthesised live in your browser.');
       window.clearTimeout(noticeTimer.current);
       noticeTimer.current = window.setTimeout(() => setNotice(''), 5200);
@@ -41,10 +43,12 @@ export function SoundProvider({ children }) {
     const ok = audioEngine.setEnabled(next);
     if (!ok && next) {
       setEnabled(false);
+      setStarted(false);
       setNotice('Audio is unavailable in this browser. Everything else still works.');
       return false;
     }
     setEnabled(next);
+    setStarted(next);
     window.clearTimeout(noticeTimer.current);
     if (next) {
       setNotice('Sound on. Every tone is synthesised live in your browser.');
@@ -59,11 +63,13 @@ export function SoundProvider({ children }) {
     autoEnabledRef.current = true;
     if (audioEngine.enabled) {
       setEnabled(true);
+      setStarted(true);
       return true;
     }
     const ok = audioEngine.setEnabled(true);
     if (ok) {
       setEnabled(true);
+      setStarted(true);
       setNotice('Sound on. Every tone is synthesised live in your browser.');
       window.clearTimeout(noticeTimer.current);
       noticeTimer.current = window.setTimeout(() => setNotice(''), 5200);
@@ -75,7 +81,12 @@ export function SoundProvider({ children }) {
   // Capture phase so the very first pluck already has sound.
   useEffect(() => {
     if (audioEngine.enabled) return undefined;
-    const handler = () => tryAutoEnable();
+    const handler = (event) => {
+      // The sound toggle handles its own state; letting the global auto-enable
+      // run first would make its click immediately toggle the new sound back off.
+      if (event.target instanceof Element && event.target.closest('.sound-toggle')) return;
+      tryAutoEnable();
+    };
     document.addEventListener('pointerdown', handler, { capture: true });
     document.addEventListener('keydown', handler, { capture: true });
     document.addEventListener('touchstart', handler, { capture: true, passive: true });
@@ -102,6 +113,7 @@ export function SoundProvider({ children }) {
   const value = useMemo(
     () => ({
       enabled,
+      started,
       toggle,
       enable,
       playSargam,
@@ -113,7 +125,7 @@ export function SoundProvider({ children }) {
       notice,
       clearNotice,
     }),
-    [enabled, toggle, enable, playSargam, pluck, harmonium, tabla, whoosh, uiClick, notice, clearNotice],
+    [enabled, started, toggle, enable, playSargam, pluck, harmonium, tabla, whoosh, uiClick, notice, clearNotice],
   );
 
   return <SoundContext.Provider value={value}>{children}</SoundContext.Provider>;

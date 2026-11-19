@@ -82,23 +82,23 @@ export function Outcomes() {
       <div className="wrap">
         <div className="section-head outcomes-head">
           <div>
-            <p className="eyebrow">The curriculum, as an instrument</p>
+            <p className="eyebrow">Six course streams · One academy</p>
             <PluckText
               as="h2"
               id="outcomes-title"
               className="display-heading"
               lines={[
-                { text: 'Six keys.', italic: false },
-                { text: 'Six things', italic: true },
-                { text: 'you keep.', italic: false },
+                { text: 'Six streams.', italic: false },
+                { text: 'One method.', italic: true },
+                { text: 'Start anywhere.', italic: false },
               ]}
             />
           </div>
           <div className="section-intro">
             <p>
-              Every outcome is one note in the six-week arc. Hover or tap a key to press it. With
-              sound on, each key plays a harmonium tone — and the section plays itself once as you
-              arrive.
+              Every course runs from beginner to advanced, with practical training and individual
+              guidance. Hover or tap a key to press it. With sound on, each key plays a harmonium
+              tone — and the section plays itself once as you arrive.
             </p>
             <p className="mono-note">Sa · Re · Ga · Ma · Pa · Dha</p>
           </div>

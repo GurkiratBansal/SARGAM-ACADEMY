@@ -170,31 +170,47 @@ class SoundEngine {
     const ctx = this.ensure();
     if (!ctx) return;
     const now = ctx.currentTime;
-    const last = this.lastPluck[stringIndex] || 0;
-    if (now - last < 0.055) return;
+    const last = this.lastPluck[stringIndex];
+    // The AudioContext clock starts at 0, so a missing timestamp must not be
+    // treated as a recent pluck — otherwise the very first pluck is swallowed.
+    if (last !== undefined && now - last < 0.055) return;
     this.lastPluck[stringIndex] = now;
 
     const string = GUITAR_STRINGS[stringIndex];
     if (!string) return;
     const freq = string.freq;
     const sr = ctx.sampleRate;
-    const seconds = freq < 120 ? 2.8 : 2.1;
+    const seconds = freq < 120 ? 3.6 : freq < 200 ? 3.2 : 2.8;
     const length = Math.floor(sr * seconds);
     const period = Math.max(2, Math.round(sr / freq));
     const data = new Float32Array(length);
 
+    // Excitation: low-passed noise, normalised so every string speaks at
+    // the same level regardless of pitch.
     let lp = 0;
+    let excitationPeak = 0;
     for (let i = 0; i < period; i += 1) {
-      lp = 0.52 * lp + 0.48 * (Math.random() * 2 - 1);
+      lp = 0.56 * lp + 0.44 * (Math.random() * 2 - 1);
       data[i] = lp;
+      excitationPeak = Math.max(excitationPeak, Math.abs(lp));
     }
-    const damp = 0.9965 - Math.min(0.006, freq * 0.000004);
+    if (excitationPeak > 0) {
+      const scale = 1 / excitationPeak;
+      for (let i = 0; i < period; i += 1) data[i] *= scale;
+    }
+
+    // Karplus–Strong delay line. The previous sample wraps to the last
+    // excitation sample when the delay line closes. Reading index -1 here
+    // used to fill the buffer with NaN, which the browser renders as silence.
+    const damping = 0.9968 - Math.min(0.004, freq * 0.000006);
     for (let i = period; i < length; i += 1) {
-      data[i] = damp * 0.5 * (data[i - period] + data[i - period - 1]);
+      const delay = i - period;
+      const previous = delay === 0 ? data[period - 1] : data[delay - 1];
+      data[i] = damping * 0.5 * (data[delay] + previous);
     }
 
     // Fade the tail so the buffer cannot click when it ends.
-    const fade = Math.min(2400, length >> 1);
+    const fade = Math.min(3200, length >> 1);
     for (let i = 0; i < fade; i += 1) {
       data[length - 1 - i] *= i / fade;
     }
@@ -207,8 +223,8 @@ class SoundEngine {
 
     const body = ctx.createBiquadFilter();
     body.type = 'lowpass';
-    body.frequency.value = 1600 + stringIndex * 520;
-    body.Q.value = 0.8;
+    body.frequency.value = 1800 + stringIndex * 520;
+    body.Q.value = 0.9;
 
     const highpass = ctx.createBiquadFilter();
     highpass.type = 'highpass';
@@ -216,8 +232,9 @@ class SoundEngine {
 
     const gain = ctx.createGain();
     gain.gain.setValueAtTime(0.0001, now);
-    gain.gain.exponentialRampToValueAtTime(0.19 - stringIndex * 0.012, now + 0.008);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + seconds * 0.92);
+    gain.gain.exponentialRampToValueAtTime(0.3 - stringIndex * 0.012, now + 0.006);
+    gain.gain.exponentialRampToValueAtTime(0.09 - stringIndex * 0.008, now + 0.32);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + seconds * 0.96);
 
     source.connect(body);
     body.connect(highpass);

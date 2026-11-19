@@ -55,24 +55,30 @@ export function Footer() {
       : 'Motion on';
 
   return (
-    <footer className="footer" aria-label="Sargam Academy footer">
+    <footer className="footer" aria-label="Amar Music Academy footer">
       <div className="wrap footer-grid">
         <div className="footer-brand">
           <a
             className="brand-link footer-logo"
             href="#top"
             onClick={(event) => go(event, 'top')}
-            aria-label="Sargam Academy, back to top"
+            aria-label="Amar Music Academy, back to top"
           >
             <Logo />
           </a>
           <p className="footer-lede">
-            A small room, a tanpura, and the note you have been circling for years. Six weeks in
-            Chandigarh and online.
+            A room, a tanpura, and the note you have been circling for years. Teaching in Ludhiana
+            and online since 2013.
           </p>
           <a className="footer-mail" href={`mailto:${SITE.email}`}>
             {SITE.email}
             <span aria-hidden="true">↗</span>
+          </a>
+          <a className="footer-phone" href={`tel:${SITE.phoneHref}`}>
+            {SITE.phone}
+          </a>
+          <a className="footer-phone" href={`tel:${SITE.phoneAltHref}`}>
+            {SITE.phoneAlt}
           </a>
         </div>
 
@@ -83,26 +89,25 @@ export function Footer() {
               {link.label}
             </a>
           ))}
-          <a href="#join" onClick={(event) => go(event, 'join')}>
-            Register
+          <a href={SITE.registrationUrl} target="_blank" rel="noopener noreferrer">
+            Book a free demo
           </a>
         </nav>
 
         <div className="footer-practical">
           <p className="mono-label">Practical</p>
           <p>
-            Winter cohort
+            Admissions open
             <br />
-            {SITE.cohortLabel}
+            Free demo · two classes a week
           </p>
           <p>
             {SITE.location}
             <br />
-            ₹8,400 · {SITE.seats} seats
+            Group classes from ₹3,000/month
           </p>
           <p className="footer-small">
-            Full refund until seven days before the first session. Two scholarship seats held for
-            people who need them.
+            Demo classes are free. Course fees are indicative and confirmed before enrolment.
           </p>
         </div>
 
@@ -137,11 +142,11 @@ export function Footer() {
       </div>
 
       <div className="wrap footer-word-wrap" aria-hidden="true">
-        <p className="footer-word">Sargam</p>
+        <p className="footer-word">Amar</p>
       </div>
 
       <div className="wrap footer-bottom">
-        <p>© {new Date().getFullYear()} Sargam Academy · Chandigarh, India</p>
+        <p>© {new Date().getFullYear()} Amar Music Academy · Ludhiana, India</p>
         <p className="footer-privacy">
           No audio files. No analytics. Mic audio is processed in your browser and never leaves it.
         </p>

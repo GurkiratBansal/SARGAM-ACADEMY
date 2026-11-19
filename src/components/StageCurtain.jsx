@@ -119,7 +119,7 @@ export function StageCurtain() {
           </div>
 
           <div className="wrap stage-content" ref={contentRef}>
-            <p className="eyebrow">Overcome stage fear · Week four</p>
+            <p className="eyebrow">Performance craft · Built into every course</p>
             <PluckText
               as="h2"
               id="stage-title"
@@ -146,8 +146,9 @@ export function StageCurtain() {
             </ol>
 
             <p className="stage-note">
-              Week six ends with a small invited baithak. You can opt out of the stage and still
-              complete the cohort — but most people don’t.
+              Performance preparation runs through every course — breath, mic technique, stage
+              mapping and the first quiet note in front of people. You set the pace; the stage can
+              wait until you are ready.
             </p>
           </div>
 

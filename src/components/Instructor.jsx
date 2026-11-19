@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { INSTRUCTOR, SITE } from '../lib/site';
 import { PluckText } from './PluckText';
-import { useSectionNavigate } from '../hooks/useSectionNavigate';
 
 function Tonearm() {
   return (
@@ -18,7 +17,6 @@ function Tonearm() {
 
 export function Instructor() {
   const dialogRef = useRef(null);
-  const navigate = useSectionNavigate();
 
   const openReel = () => {
     const dialog = dialogRef.current;
@@ -37,12 +35,6 @@ export function Instructor() {
     else dialog.removeAttribute('open');
   };
 
-  const goJoin = (event) => {
-    event.preventDefault();
-    closeReel();
-    navigate('join');
-  };
-
   return (
     <section
       className="section instructor"
@@ -54,7 +46,7 @@ export function Instructor() {
       <div className="wrap">
         <div className="section-head instructor-head">
           <div>
-            <p className="eyebrow">Your instructor · Side A</p>
+            <p className="eyebrow">The founder · Amarjeet Singh Suri</p>
             <PluckText
               as="h2"
               id="instructor-title"
@@ -67,11 +59,11 @@ export function Instructor() {
           </div>
           <div className="section-intro">
             <p>
-              Meera has spent fourteen years teaching the unglamorous part: the first note, the
-              shaky breath, the Wednesday when nothing sounds right. The stage comes later. The
-              practice comes first.
+              Amarjeet has spent more than fifteen years teaching the unglamorous part: the first
+              note, the shaky breath, the Wednesday when nothing sounds right. The stage came later.
+              The practice comes first.
             </p>
-            <p className="mono-note">Chandigarh · Hindustani vocal · harmonium</p>
+            <p className="mono-note">Ludhiana · Vocal · Guitar · Harmonium · Tabla</p>
           </div>
         </div>
 
@@ -82,10 +74,10 @@ export function Instructor() {
                 <div className="vinyl-grooves" aria-hidden="true" />
                 <div className="vinyl-label">
                   <img
-                    src="/media/instructor-portrait.svg"
-                    alt="Illustrated portrait of Meera Kaur, eyes closed, in magenta and gold."
-                    width="800"
-                    height="800"
+                    src="/media/founder-portrait.jpg"
+                    alt="Portrait of Amarjeet Singh Suri, founder of Amar Music Academy, at a studio microphone."
+                    width="1000"
+                    height="1000"
                     loading="lazy"
                     decoding="async"
                   />
@@ -96,7 +88,7 @@ export function Instructor() {
               <Tonearm />
             </div>
             <figcaption className="vinyl-caption">
-              <span className="mono-label">Side A · 33⅓ rpm</span>
+              <span className="mono-label">Founder · Side A</span>
               <span>Hover the record. It leans into the needle.</span>
             </figcaption>
           </figure>
@@ -107,12 +99,11 @@ export function Instructor() {
               <p className="instructor-fullname">{INSTRUCTOR.name}</p>
             </div>
 
-            <blockquote className="instructor-quote">
-              <span className="quote-mark" aria-hidden="true">
-                “
-              </span>
-              {INSTRUCTOR.quote}
-            </blockquote>
+            <p className="instructor-roles">
+              {INSTRUCTOR.roles.map((role) => (
+                <span key={role}>{role}</span>
+              ))}
+            </p>
 
             <p className="instructor-bio">{INSTRUCTOR.bio}</p>
 
@@ -130,14 +121,14 @@ export function Instructor() {
               className="reel-card"
               onClick={openReel}
               aria-haspopup="dialog"
-              aria-label="Open the intro reel, Inside a Sunday class"
+              aria-label="Open the academy reel, studio and stage"
             >
               <span className="reel-still">
                 <img
-                  src="/media/reel-poster.svg"
+                  src="/media/studio-poster.jpg"
                   alt=""
-                  width="1200"
-                  height="675"
+                  width="1600"
+                  height="900"
                   loading="lazy"
                   decoding="async"
                 />
@@ -150,8 +141,8 @@ export function Instructor() {
                   </svg>
                 </span>
                 <span className="reel-play-caption">
-                  <span>Inside a Sunday class</span>
-                  <em>01:12</em>
+                  <span>Studio &amp; stage</span>
+                  <em>reel</em>
                 </span>
               </span>
               <span className="reel-label">
@@ -163,16 +154,33 @@ export function Instructor() {
             </button>
 
             <p className="instructor-cta-line">
-              Six weeks from now, you could be the person who sings at the baithak.
+              Fifteen years of teaching, one note at a time.
               <a
-                href="#join"
-                onClick={goJoin}
+                href={SITE.registrationUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-link"
               >
-                Take the seat <span aria-hidden="true">→</span>
+                Book a free demo <span aria-hidden="true">↗</span>
               </a>
             </p>
           </div>
+        </div>
+
+        <div className="instructor-strip" aria-label="Amarjeet Singh Suri — riyaz, studio and stage">
+          {INSTRUCTOR.gallery.map((shot) => (
+            <figure key={shot.src}>
+              <img
+                src={shot.src}
+                alt={shot.alt}
+                width="540"
+                height="720"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>{shot.label}</figcaption>
+            </figure>
+          ))}
         </div>
       </div>
 
@@ -189,23 +197,23 @@ export function Instructor() {
             type="button"
             className="dialog-close"
             onClick={closeReel}
-            aria-label="Close the intro reel"
+            aria-label="Close the academy reel"
           >
             <span aria-hidden="true">×</span>
           </button>
 
           <div className="reel-dialog-media">
             {SITE.reelSrc ? (
-              <video controls poster="/media/reel-poster.svg" preload="none">
+              <video controls poster="/media/studio-poster.jpg" preload="none">
                 <source src={SITE.reelSrc} />
               </video>
             ) : (
               <>
                 <img
-                  src="/media/reel-poster.svg"
-                  alt="Warmly lit music room with a harmonium and two musicians."
-                  width="1200"
-                  height="675"
+                  src="/media/studio-poster.jpg"
+                  alt="Amarjeet Singh Suri at a studio microphone."
+                  width="1600"
+                  height="900"
                 />
                 <div className="reel-dialog-note">
                   <span className="play-disc" aria-hidden="true">
@@ -220,11 +228,11 @@ export function Instructor() {
           </div>
 
           <div className="reel-dialog-copy">
-            <p className="eyebrow">Inside the riyaz room · 01:12</p>
-            <h3 id="reel-dialog-title">A Sunday class, unedited.</h3>
+            <p className="eyebrow">Studio &amp; stage · reel in the edit</p>
+            <h3 id="reel-dialog-title">A room, a mic, a first note.</h3>
             <p>
-              No polished stage, no perfect take. A room, a tanpura, a harmonium and six people
-              learning where their Sa actually lives. The full reel opens with a note from Meera.
+              A short reel — riyaz, a lesson, a stage check — is being edited. Until then, ask for a
+              sample of recent work, or come and hear a class for yourself.
             </p>
             <p className="mono-note">
               {SITE.reelSrc
@@ -232,10 +240,16 @@ export function Instructor() {
                 : 'The film is being colour-graded. Ask for it when you write to us.'}
             </p>
             <div className="reel-dialog-actions">
-              <a href="#join" onClick={goJoin} className="btn btn-gold btn-small">
-                Join the winter cohort
+              <a
+                href={SITE.registrationUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-gold btn-small"
+                onClick={closeReel}
+              >
+                Book a free demo
               </a>
-              <a className="text-link" href={`mailto:${SITE.email}?subject=Intro%20reel`}>
+              <a className="text-link" href={`mailto:${SITE.email}?subject=Academy%20reel`}>
                 Request the reel <span aria-hidden="true">↗</span>
               </a>
             </div>

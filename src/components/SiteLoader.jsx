@@ -5,7 +5,7 @@ import { useSound } from '../context/SoundContext';
 import { signalReveal } from '../lib/reveal';
 import { SARGAM_SEQUENCE } from '../lib/notes';
 
-const SESSION_KEY = 'sargam-loader-seen';
+const SESSION_KEY = 'amar-loader-seen';
 const NOTE_POSITIONS = [100, 186, 272, 358, 444, 530, 616, 702];
 
 function shouldShowLoader(reduced, veryLow) {
@@ -18,7 +18,7 @@ function shouldShowLoader(reduced, veryLow) {
   }
 }
 
-export function SargamLoader() {
+export function SiteLoader() {
   const { reducedMotion, veryLow } = usePreferences();
   const { playSargam } = useSound();
   const [visible, setVisible] = useState(() => shouldShowLoader(reducedMotion, veryLow));
@@ -212,7 +212,7 @@ export function SargamLoader() {
       ref={overlayRef}
       role="dialog"
       aria-modal="true"
-      aria-label="Sargam Academy is loading"
+      aria-label="Amar Music Academy is loading"
     >
       <div className="loader-grain" aria-hidden="true" />
       <button type="button" className="loader-skip" onClick={skip} ref={skipRef}>
@@ -262,10 +262,10 @@ export function SargamLoader() {
           />
 
           <text ref={wordRef} className="loader-wordmark" x="400" y="282" textAnchor="middle">
-            Sargam
+            Amar
           </text>
           <text ref={subRef} className="loader-submark" x="400" y="308" textAnchor="middle">
-            ACADEMY · CHANDIGARH
+            MUSIC ACADEMY · LUDHIANA
           </text>
         </svg>
 
