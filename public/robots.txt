@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://amarmusicacademy.in/sitemap.xml
+Sitemap: https://sargam-academy.onrender.com/sitemap.xml

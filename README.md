@@ -69,8 +69,9 @@ All site copy, pricing, contact details and media paths live in `src/lib/site.js
 - `SITE.reelSrc` — **empty by default.** While empty, the reel dialog shows a still and says the
   reel is in the edit. Set this to a video URL to embed it.
 - `SITE.phone` / `SITE.phoneAlt` — supplied numbers; confirm which one should be primary.
-- `https://amarmusicacademy.in/` in `index.html` (canonical, Open Graph, JSON-LD),
-  `public/robots.txt` and `public/sitemap.xml` — replace with the live domain.
+- The live URL `https://sargam-academy.onrender.com/` is used in `index.html` (canonical, Open Graph,
+  JSON-LD), `public/robots.txt` and `public/sitemap.xml`. Update all of them if a custom domain is
+  added.
 - `public/og.png` — 1200×630 social card, built from the founder portrait.
 - `public/favicon.svg` — brand mark.
 
